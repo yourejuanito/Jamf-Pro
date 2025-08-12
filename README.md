@@ -122,4 +122,4 @@ MIT License — Use freely, modify, and share.
 ## Credits
 - [SwiftDialog by Bart Reardon](https://github.com/bartreardon/swiftDialog)
 - [Jamf Pro API Documentation](https://developer.jamf.com/)
-- [rtroutons extensive blog post]((https://derflounder.wordpress.com/2023/02/25/providing-jamf-pro-computer-inventory-information-via-macos-configuration-profile/))
+- [rtroutons extensive blog post](https://derflounder.wordpress.com/2023/02/25/providing-jamf-pro-computer-inventory-information-via-macos-configuration-profile/)

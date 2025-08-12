@@ -108,14 +108,8 @@ Payload:
 ---
 
 ## Known Limitations
-- **Static site list** — Must be manually updated if sites change in Jamf.
+- **Static site list** — Must be manually updated if sites change in Jamf. Sites don't tend to dynamically change that often, management for site names and id's is manual.
 - **SwiftDialog JSON limitation** — Currently cannot directly parse API-returned JSON into the drop-down.
-- Requires **OAuth client credentials** to be pre-generated in Jamf.
-
----
-
-## License
-MIT License — Use freely, modify, and share.
 
 ---
 
@@ -123,3 +117,8 @@ MIT License — Use freely, modify, and share.
 - [SwiftDialog by Bart Reardon](https://github.com/bartreardon/swiftDialog)
 - [Jamf Pro API Documentation](https://developer.jamf.com/)
 - [rtroutons extensive blog post](https://derflounder.wordpress.com/2023/02/25/providing-jamf-pro-computer-inventory-information-via-macos-configuration-profile/)
+
+---
+
+## License
+MIT License — Use freely, modify, and share.

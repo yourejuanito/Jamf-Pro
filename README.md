@@ -1,5 +1,7 @@
 # Corporate Computer Site Assignment Script
 
+![Screenshot](https://github.com/yourejuanito/Jamf-Pro-Site-Assignment/blob/main/assets/corpSiteImage.png)
+
 ## Overview
 This Bash script allows IT administrators to assign a **Jamf-managed macOS device** to a specific **Site** using [SwiftDialog](https://github.com/bartreardon/swiftDialog) for the user interface.  
 

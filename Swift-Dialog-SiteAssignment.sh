@@ -127,7 +127,7 @@ IFS=, selectValues="${sortedNames[*]}"; unset IFS
 # SwiftDialog dropdown → JSON output
 "$dialogBinary" \
   --title "Corporate Computer Site Assignment" \
-  --icon computer --overlayicon SF=firewall,colour=black,colour2=blue --iconsize 200 -s \
+  --icon computer --overlayicon SF=arrowshape.turn.up.right.fill,colour=black,colour2=blue --iconsize 200 -s \
   --message "Choose a site from the drop down list below for this macOS based on the region the user is assinged to. \n \n  (i.e. North America, Europe, Asia, South America, etc):" \
   --selecttitle "Site:" \
   --selectvalues "$selectValues" \

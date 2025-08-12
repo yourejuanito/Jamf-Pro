@@ -7,7 +7,6 @@ Instead of dynamically fetching sites via the Jamf API (which SwiftDialog curren
 
 > **Author:** Juan Garcia  
 > **Version:** 1.0  
-> **Future Work:** v2 will replace the static site list with a dynamically fetched list from Jamf's API once SwiftDialog limitations are resolved.
 
 ---
 
@@ -17,6 +16,7 @@ Instead of dynamically fetching sites via the Jamf API (which SwiftDialog curren
 - Uses Jamf's **OAuth 2.0** flow for secure API authentication.
 - Sends a **PATCH** request to `/api/v1/computers-inventory-detail/{id}` to update the Site ID.
 - Sorts sites **alphabetically** while keeping IDs matched.
+- Deployment Workflow to use **Jamf Pro** with  
 
 ---
 
@@ -25,14 +25,14 @@ Instead of dynamically fetching sites via the Jamf API (which SwiftDialog curren
 - [SwiftDialog](https://github.com/bartreardon/swiftDialog) installed at `/usr/local/bin/dialog`
 - [`jq`](https://stedolan.github.io/jq/) installed for JSON parsing
 - Jamf Pro instance with API access
-- A local plist file containing:
+- A local plist file containing ([rtrouton]((https://derflounder.wordpress.com/2023/02/25/providing-jamf-pro-computer-inventory-information-via-macos-configuration-profile/))):
   - `jssID` (Jamf Computer ID)
   - `serialNumber` (Mac serial number)
 - Jamf API **Client ID** and **Client Secret**
 
 ---
 
-## Installation
+## Installation for local testing
 1. Install SwiftDialog:
    ```bash
    brew install --cask swift-dialog
@@ -41,12 +41,12 @@ Instead of dynamically fetching sites via the Jamf API (which SwiftDialog curren
    ```bash
    brew install jq
    ```
-3. Place the script in your desired location (e.g., `/usr/local/bin/testingpolicy.sh`).
+3. Place the script in your desired location (e.g., `/usr/local/bin/SwiftDialog-SiteAssignment.sh`).
 4. Make it executable:
    ```bash
-   chmod +x /usr/local/bin/testingpolicy.sh
+   chmod +x /usr/local/bin/SwiftDialog-SiteAssignment.sh
    ```
-5. Update the **configuration variables** in the script:
+5. Update the **configuration variables** in the script with you attributes:
    ```bash
    jamfURL="https://[yourjamfCloud].jamfcloud.com"
    client_id="[yourClientID]"
@@ -63,12 +63,15 @@ sudo /bin/bash /path/to/testingpolicy.sh
 ```
 
 You’ll see:
+![]('/Site Assignment/assets/corpSiteImage.png')
 1. A SwiftDialog drop-down listing your available sites.
 2. Once a site is selected, the script updates the **Site ID** in Jamf for that Mac.
 
 ---
 
 ## Example plist file
+You can create a jamf configuration profile with a Applications & Custom Settings and upload the plist file below. 
+
 Your plist file should be located in the path set in `plistPath` and contain:
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -94,7 +97,7 @@ Payload:
 ```json
 {
   "general": {
-    "siteId": 999
+    "siteId": [selectedID]
   }
 }
 ```
@@ -116,3 +119,4 @@ MIT License — Use freely, modify, and share.
 ## Credits
 - [SwiftDialog by Bart Reardon](https://github.com/bartreardon/swiftDialog)
 - [Jamf Pro API Documentation](https://developer.jamf.com/)
+- [rtroutons extensive blog post]((https://derflounder.wordpress.com/2023/02/25/providing-jamf-pro-computer-inventory-information-via-macos-configuration-profile/))

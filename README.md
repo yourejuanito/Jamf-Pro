@@ -18,7 +18,7 @@ Instead of dynamically fetching sites via the Jamf API (which SwiftDialog curren
 - Uses Jamf's **OAuth 2.0** flow for secure API authentication.
 - Sends a **PATCH** request to `/api/v1/computers-inventory-detail/{id}` to update the Site ID.
 - Sorts sites **alphabetically** while keeping IDs matched.
-- Deployment Workflow to use **Jamf Pro** with  
+- Deployment Workflow to use **Jamf Pro** with.
 
 ---
 
@@ -27,11 +27,12 @@ Instead of dynamically fetching sites via the Jamf API (which SwiftDialog curren
 - [SwiftDialog](https://github.com/bartreardon/swiftDialog) installed at `/usr/local/bin/dialog`
 - [`jq`](https://stedolan.github.io/jq/) installed for JSON parsing
 - Jamf Pro instance with API access
-- A local plist file containing ([rtrouton]((https://derflounder.wordpress.com/2023/02/25/providing-jamf-pro-computer-inventory-information-via-macos-configuration-profile/))):
+- A local plist file containing:
   - `jssID` (Jamf Computer ID)
   - `serialNumber` (Mac serial number)
+  -  More information on creating - ([rtrouton](https://derflounder.wordpress.com/2023/02/25/providing-jamf-pro-computer-inventory-information-via-macos-configuration-profile/))
 - Jamf API **Client ID** and **Client Secret**
-
+  - Jamf API Client ID with a Role that has the ability to Read, Create, and Update Computers.
 ---
 
 ## Installation for local testing

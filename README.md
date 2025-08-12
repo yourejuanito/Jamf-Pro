@@ -64,8 +64,8 @@ Run the script manually:
 sudo /bin/bash /path/to/testingpolicy.sh
 ```
 
-You’ll see:
-![Screenshot](https://github.com/yourejuanito/Jamf-Pro-Site-Assignment/blob/main/assets/corpSiteImage.png)
+You’ll see the image from above. 
+
 1. A SwiftDialog drop-down listing your available sites.
 2. Once a site is selected, the script updates the **Site ID** in Jamf for that Mac.
 

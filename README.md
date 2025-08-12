@@ -36,3 +36,83 @@ Instead of dynamically fetching sites via the Jamf API (which SwiftDialog curren
 1. Install SwiftDialog:
    ```bash
    brew install --cask swift-dialog
+   ```
+2. Install `jq`:
+   ```bash
+   brew install jq
+   ```
+3. Place the script in your desired location (e.g., `/usr/local/bin/testingpolicy.sh`).
+4. Make it executable:
+   ```bash
+   chmod +x /usr/local/bin/testingpolicy.sh
+   ```
+5. Update the **configuration variables** in the script:
+   ```bash
+   jamfURL="https://[yourjamfCloud].jamfcloud.com"
+   client_id="[yourClientID]"
+   client_secret="[yourClientSecret]"
+   plistPath="[locationOfYourEndpointInformationPLIST]"
+   ```
+
+---
+
+## Usage
+Run the script manually:
+```bash
+sudo /bin/bash /path/to/testingpolicy.sh
+```
+
+You’ll see:
+1. A SwiftDialog drop-down listing your available sites.
+2. Once a site is selected, the script updates the **Site ID** in Jamf for that Mac.
+
+---
+
+## Example plist file
+Your plist file should be located in the path set in `plistPath` and contain:
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>jssID</key>
+    <integer>123</integer>
+    <key>serialNumber</key>
+    <string>C02XXXXXXX</string>
+</dict>
+</plist>
+```
+
+---
+
+## API Endpoint Used
+This script uses:
+```
+PATCH /api/v1/computers-inventory-detail/{id}
+```
+Payload:
+```json
+{
+  "general": {
+    "siteId": 999
+  }
+}
+```
+
+---
+
+## Known Limitations
+- **Static site list** — Must be manually updated if sites change in Jamf.
+- **SwiftDialog JSON limitation** — Currently cannot directly parse API-returned JSON into the drop-down.
+- Requires **OAuth client credentials** to be pre-generated in Jamf.
+
+---
+
+## License
+MIT License — Use freely, modify, and share.
+
+---
+
+## Credits
+- [SwiftDialog by Bart Reardon](https://github.com/bartreardon/swiftDialog)
+- [Jamf Pro API Documentation](https://developer.jamf.com/)

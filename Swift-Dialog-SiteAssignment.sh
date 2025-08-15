@@ -15,12 +15,18 @@
 
 ########################################
 # CONFIG
+#
+# For Jamf pro usage utilize the parameters 4-7 this adds a layer
+# of security to your api access credentials. It also a good idea
+# to update the Parameter Values when you're uploading the script
+# to jamf.
 ########################################
-jamfURL="https://[yourjamfCloud].jamfcloud.com"
-client_id="[yourClientID]"
-client_secret="[yourClientSecret]"
 
-plistPath="[locationOfYourEnpointInformationPLIST]"
+jamfURL=$4
+client_id=$5
+client_secret=$6
+plistPath=$7
+
 dialogBinary="/usr/local/bin/dialog"
 
 # Static mapping (Name → ID)
@@ -157,4 +163,6 @@ echo "🏷️ Selected: $selected (ID: $siteID)"
 
 token=$(getBearerToken)
 assignSiteToComputer "$jssID" "$siteID" "$token"
-echo "✅ Site \"$selected\" assigned to device ${serialNumber:-"(unknown serial)"}."
+
+# this writes out a file to the JAMF directory that can be leveraged as a watch path
+echo "✅ Site \"$selected\" assigned to device ${serialNumber:-"(unknown serial)"}." > /Library/Application\ Support/JAMF/sdSiteAssignment.txt
